@@ -1,0 +1,64 @@
+<Window x:Class="ResumeDownload.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Resume Download"
+        Height="560"
+        Width="780"
+        MinHeight="520"
+        MinWidth="680"
+        Background="#F7F5F2"
+        FontFamily="Segoe UI"
+        FontSize="14"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock Text="Resume Download" FontSize="28" FontWeight="SemiBold" Foreground="#1C1A17" />
+            <TextBlock Margin="0,4,0,0" Foreground="#5E584F"
+                       Text="If the connection drops, Start continues from the bytes already saved." />
+        </StackPanel>
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,12">
+            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,6" Foreground="#5E584F" Text="Link" />
+            <TextBox x:Name="UrlBox" MinHeight="36" Padding="8,6" TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto" AcceptsReturn="False" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Margin="0,0,0,12">
+            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,6" Foreground="#5E584F" Text="Save as" />
+            <Button x:Name="BrowseButton" DockPanel.Dock="Right" Margin="8,0,0,0" Padding="14,6"
+                    Content="Browse" Click="Browse_Click" />
+            <TextBox x:Name="PathBox" MinHeight="36" Padding="8,6" VerticalContentAlignment="Center" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="3" Margin="0,0,0,16">
+            <TextBlock DockPanel.Dock="Top" Margin="0,0,0,6" Foreground="#5E584F" Text="SHA256, optional" />
+            <TextBox x:Name="HashBox" MinHeight="36" Padding="8,6" VerticalContentAlignment="Center" />
+        </DockPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,16">
+            <Button x:Name="StartButton" Content="Start" Padding="22,8" Margin="0,0,8,0"
+                    Background="#1F4E3D" Foreground="White" BorderThickness="0" Click="Start_Click" />
+            <Button x:Name="PauseButton" Content="Pause" Padding="22,8" IsEnabled="False" Click="Pause_Click" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Margin="0,0,0,12">
+            <ProgressBar x:Name="Progress" Height="18" Minimum="0" Maximum="100" />
+            <TextBlock x:Name="StatusText" Margin="0,10,0,0" FontWeight="SemiBold" Foreground="#1C1A17"
+                       TextWrapping="Wrap" Text="Ready." />
+            <TextBlock x:Name="DetailText" Margin="0,4,0,0" Foreground="#5E584F" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="6" VerticalAlignment="Bottom" Foreground="#5E584F" TextWrapping="Wrap"
+                   Text="A dropped connection is retried. A server that ignores the resume range does not overwrite the partial file." />
+    </Grid>
+</Window>
